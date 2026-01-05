@@ -1,228 +1,194 @@
 %-------------------------
-% Resume in Latex
-% Author : Jake Gutierrez
-% Based off of: https://github.com/sb2nov/resume
-% License : MIT
+% Base Resume – Principal Software Engineer
+% Canonical / Additive / ATS-safe
 %------------------------
 
 \documentclass[letterpaper,12pt]{article}
 
-\usepackage{latexsym}
+\usepackage[empty]{fullpage}
 \usepackage{titlesec}
-\usepackage{marvosym}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
+\usepackage{fontawesome5}
 \usepackage[english]{babel}
-\usepackage{tabularx}
-\usepackage{fontawesome}
-\usepackage{multicol}
-\setlength{\multicolsep}{-3.0pt}
-\setlength{\columnsep}{-1pt}
 \input{glyphtounicode}
 
-
-%----------FONT OPTIONS----------
-% sans-serif
-% \usepackage[sfdefault]{FiraSans}
-% \usepackage[sfdefault]{roboto}
-% \usepackage[sfdefault]{noto-sans}
-% \usepackage[default]{sourcesanspro}
-
-% serif
-% \usepackage{CormorantGaramond}
-% \usepackage{charter}
-
-
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyfoot{}
+\fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins
 \addtolength{\oddsidemargin}{-0.6in}
-\addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1.19in}
 \addtolength{\topmargin}{-.7in}
 \addtolength{\textheight}{1.4in}
 
-\urlstyle{same}
-
-\raggedbottom
 \raggedright
-\setlength{\tabcolsep}{0in}
+\raggedbottom
 
-% Sections formatting
-\titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large\bfseries
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+\titleformat{\section}
+  {\vspace{-4pt}\scshape\large\bfseries}
+{}{0em}{}[\titlerule \vspace{-5pt}]
 
-% Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
-%-------------------------
-% Custom commands
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{0pt}}
-  }
-}
-
-\newcommand{\classesList}[4]{
-    \item\small{
-        {#1 #2 #3 #4 \vspace{-2pt}}
-  }
-}
+% ---------- Commands ----------
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-1pt}\item
-    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & \textbf{\small #2} \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-5pt}
+\item
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+\textbf{#1} & \textbf{\small #2} \\
+\textit{\small #3} & \textit{\small #4}
+\end{tabular*}
 }
-
-\newcommand{\resumeSubSubheading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeProjectHeading}[2]{
-    \item
-    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & \textbf{\small #2}\\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
-
-\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
-\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2pt}}
-
-%-------------------------------------------
-%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \begin{document}
 
-%----------HEADING----------
+%----------HEADER----------
 \begin{center}
-    {\Huge \scshape Ajinkya Wakhale} \\ \vspace{1pt}
-    Germantown, MD \\ \vspace{1pt}
-    \small \raisebox{-0.1\height}\faPhone\ 412-499-5829 ~ \href{mailto:ajinkyawakhale3@gmail.com}{\raisebox{-0.2\height}\faEnvelope\  \underline{ajinkyawakhale3@gmail.com}} ~
-    \href{https://linkedin.com/in/ajinkyawakhale}{\raisebox{-0.2\height}\faLinkedinSquare\ \underline{linkedin.com/in/ajinkyawakhale}}
-    \vspace{-8pt}
+{\Huge \scshape Ajinkya Wakhale} \\
+Germantown, MD \\
+
+\faPhone\ \underline{412-499-5829} \quad
+\faEnvelope\ \href{mailto:ajinkyawakhale3@gmail.com}{\underline{ajinkyawakhale3@gmail.com}} \quad
+\faLinkedin\ \href{https://linkedin.com/in/ajinkyawakhale}{\underline{linkedin.com/in/ajinkyawakhale}}
 \end{center}
 
 %-----------PROFILE-----------
 \section{Profile}
 % BEGIN_PROFILE
-\small{Principal Software Engineer with 9 years of experience leading architecture and development of large-scale distributed systems and IoT platforms. Expert in designing cloud-native microservices, implementing robust DevOps practices, and driving technical strategy across multiple product lines. Proven track record in establishing engineering best practices, mentoring development teams, and delivering high-impact solutions that improve system reliability and business outcomes.}
+\small{
+Principal Software Engineer with 9+ years of experience designing and owning distributed backend systems and platform services for industrial IoT and Android-based edge gateways. Strong background in cloud-native and air-gapped architectures, event-driven microservices, API design, and developer platforms. Proven ownership across system design, CI/CD, reliability, observability, and partner enablement.
+}
 % END_PROFILE
+
+%-----------SYSTEMS-----------
+\section{Systems \& Architecture Highlights}
+\resumeItemListStart
+% BEGIN_SYSTEMS_HIGHLIGHTS
+\resumeItem{Designed cloud-native and air-gapped systems supporting thousands of industrial gateways with strong reliability guarantees.}
+\resumeItem{Built event-driven architectures using MQTT, message queues, and horizontally scalable backend microservices and APIs.}
+\resumeItem{Owned edge reliability including offline-first gateways, gap-fill, FIFO ordering, and transactional correctness.}
+\resumeItem{Enabled internal and external developers via platform services, SDKs, and standardized APIs.}
+\resumeItem{Led CI/CD and automated testing in on-prem and air-gapped environments.}
+% END_SYSTEMS_HIGHLIGHTS
+\resumeItemListEnd
 
 %-----------EXPERIENCE-----------
 \section{Experience}
-  \resumeSubHeadingListStart
+\resumeSubHeadingListStart
 
-    \resumeSubheading
-      {Machfu Inc}{Sep 2019 -- Present}
-      {Principal Software Engineer}{Rockville, MD}
-      \resumeItemListStart
-        % BEGIN_DEVOPS
-        \resumeItem{Architected cloud-native Java applications for provisioning, monitoring, and controlling industrial IoT assets across multiple client deployments.}
-        \resumeItem{Developed Android services and field engineer applications enabling sensor communication via MQTT/HTTP to AWS and Azure backends, reducing commissioning time by 40\%.}
-        \resumeItem{Built headless AOSP applications for gateway configuration, including network settings and user interfaces on custom Machfu platform.}
-        \resumeItem{Led technical client engagements as primary point of contact, ensuring solution alignment with customer requirements.}
-        \resumeItem{Established DevOps team and CI/CD pipeline with Jenkins, achieving 85\% build time reduction through Docker-based testing infrastructure.}
-        % END_DEVOPS
-        \vspace{4pt}
-        \item[]
-        \textit{Device Management System}
-        \begin{itemize}
-            % BEGIN_DEVICE_MGMT_BACKEND
-            \resumeItem{Engineered multi-tenant microservice platform supporting thousands of devices, improving early issue detection by 70\%.}
-            \resumeItem{Implemented event-driven architecture with MQTT pub/sub pattern using AWS IoT Shadow and Jobs, enabling bi-directional communication and real-time device state synchronization.}
-            \resumeItem{Built RESTful APIs integrating device telemetry with ThingsBoard and QuickSight for real-time visualization.}
-            \resumeItem{Implemented X.509 certificate-based provisioning with mutual TLS and internal PKI for secure authentication.}
-            \resumeItem{Built Infrastructure as Code using AWS CDK for automated customer onboarding and provisioning.}
-            \resumeItem{Architected scalable data ingestion pipeline using connection pooling and AWS service discovery for ThingsBoard integration, handling traffic spikes with minimal latency.}
-            \resumeItem{Reduced AWS infrastructure costs by 40\% through strategic resource optimization, data lifecycle policies, and intelligent caching strategies.}
-            % END_DEVICE_MGMT_BACKEND
-        \end{itemize}
-        \item[]
-        \textit{Meter Diagnostics Platform}
-        \begin{itemize}
-            % BEGIN_METER_DIAGNOSTICS
-            \resumeItem{Architected end-to-end RS-485 Modbus diagnostics platform supporting up to 32 slave devices per gateway.}
-            \resumeItem{Designed self-sufficient system for air-gapped customer environment with limited remote access, incorporating comprehensive health monitoring, internal metrics, and proactive alerting to minimize intervention needs.}
-            \resumeItem{Built stateless Go backend handling ~1,000 gateways with sub-second REST ingestion via in-memory caching.}
-            \resumeItem{Designed horizontally scalable PostgreSQL deployment with database sharding for diagnostics persistence.}\vspace{-2pt}
-            % END_METER_DIAGNOSTICS
-        \end{itemize}
-        \item[]
-        \textit{Protocol Abstraction Framework}
-        \begin{itemize}
-            % BEGIN_PROTOCOL_PLATFORM
-            \resumeItem{Built multithreaded Java framework abstracting Modbus and MQTT protocol complexity for rapid application development.}
-            \resumeItem{Implemented AIDL and shared memory IPC with optimized serialization/deserialization pipelines.}
-            \resumeItem{Created client libraries simplifying service integration across the Machfu platform.}
-            % END_PROTOCOL_PLATFORM
-        \end{itemize}
-      \resumeItemListEnd
+% ---- Machfu ----
+\resumeSubheading
+{Machfu Inc}{Sep 2019 -- Present}
+{Principal Software Engineer}{Rockville, MD}
 
-    \resumeSubheading
-      {Comscore Inc}{Aug 2018 -- Aug 2019}
-      {Automation Engineer}{Reston, VA}
-      \resumeItemListStart
-        % BEGIN_COMSCORE
-        \resumeItem{Designed and implemented multi-node Airflow cluster with Kubernetes orchestration, automated deployment workflows using REST APIs integrating JIRA, Git, and Jenkins, and developed multi-threaded data verification modules using Python, achieving 70\% efficiency improvement in testing cycles.}
-        % END_COMSCORE
-      \resumeItemListEnd
+\resumeItemListStart
+% BEGIN_DEVOPS
+\resumeItem{Owned architecture and development of backend services, APIs, and Android-based industrial gateways for provisioning, telemetry ingestion, diagnostics, and control of IoT assets.}
+\resumeItem{Founded and led DevOps and testing infrastructure, designing Jenkins-based CI/CD pipelines, artifact repositories, and automated unit/integration testing in an on-prem, air-gapped environment.}
+\resumeItem{Built custom server-side Git hooks in Python for self-hosted Git, enabling end-to-end automation from commit to build, test, and release.}
+\resumeItem{Standardized build and testing workflows across 10--20 engineers, eliminating manual steps and significantly reducing build times for large Android/AOSP applications.}
+% END_DEVOPS
+\resumeItemListEnd
 
-    \resumeSubheading
-      {Accenture}{May 2013 -- Jul 2015}
-      {Software Engineer}{Bengaluru, India}
-      \resumeItemListStart
-        % BEGIN_ACCENTURE
-        \resumeItem{Developed SAP ABAP solutions for enterprise assessment and customization tools, gaining expertise in BAPIs, RFCs, and core SAP modules including IS Banking, SD, and FICO.}
-        % END_ACCENTURE
-      \resumeItemListEnd
+\textit{\small Device Management Platform (Cloud Backend)}
+\resumeItemListStart
+% BEGIN_DEVICE_MGMT_BACKEND
+\resumeItem{Architected containerized backend microservices on AWS ECS, handling thousands of API calls and telemetry messages per minute.}
+\resumeItem{Designed event-driven ingestion pipelines where gateways publish telemetry to AWS IoT (MQTT), fan out via SQS, and are processed by backend services.}
+\resumeItem{Implemented service discovery, connection pooling, and horizontal auto-scaling to ensure durability and throughput under load.}
+\resumeItem{Integrated telemetry pipelines with ThingsBoard for real-time visualization and monitoring.}
+\resumeItem{Implemented observability using structured logging, metrics, health checks, and alarms across multiple containerized services.}
+\resumeItem{Reduced cloud infrastructure costs by up to 40\% through scaling strategies and resource optimization.}
+% END_DEVICE_MGMT_BACKEND
+\resumeItemListEnd
 
-  \resumeSubHeadingListEnd
-\vspace{-12pt}
+\textit{\small Meter Diagnostics Platform (Air-Gapped Edge Backend)}
+\resumeItemListStart
+% BEGIN_METER_DIAGNOSTICS
+\resumeItem{Architected end-to-end RS-485 Modbus diagnostics platform supporting up to 32 slave devices per gateway.}
+\resumeItem{Designed self-sufficient system for air-gapped customer environments with limited remote access, incorporating health monitoring, internal metrics, and proactive alerting.}
+\resumeItem{Built stateless Go backend handling 1,000 gateways with sub-second REST ingestion via Redis in-memory caching.}
+\resumeItem{Designed horizontally scalable PostgreSQL deployment with database sharding, data models, and queries for diagnostics persistence.}
+% END_METER_DIAGNOSTICS
+\resumeItemListEnd
+
+\textit{\small Protocol Abstraction \& Developer Platform}
+\resumeItemListStart
+% BEGIN_PROTOCOL_PLATFORM
+\resumeItem{Designed platform services abstracting MQTT and Modbus communication for Android-based industrial gateways.}
+\resumeItem{Built SDKs and libraries used by external partners to develop applications on Machfu platform.}
+\resumeItem{Enabled secure, high-level access to gateway services without requiring protocol-level expertise.}
+\resumeItem{Developed custom industrial applications implementing BLE-to-Modbus protocol bridging in secured deployments.}
+\resumeItem{Implemented two-phase commit--style mechanisms to ensure atomic and consistent propagation of BLE data into Modbus registers.}
+% END_PROTOCOL_PLATFORM
+\resumeItemListEnd
+
+\textit{\small Edge Reliability \& Offline Systems}
+\resumeItemListStart
+% BEGIN_EDGE_RELIABILITY
+\resumeItem{Designed offline-first telemetry handling for Android-based gateways operating with intermittent connectivity.}
+\resumeItem{Persisted telemetry locally and implemented gap-fill replay upon connectivity restoration.}
+\resumeItem{Ensured FIFO, timestamp-based ordering to preserve telemetry correctness and prevent data loss.}
+% END_EDGE_RELIABILITY
+\resumeItemListEnd
+
+\textit{\small Android Provisioning \& Field Tools}
+\resumeItemListStart
+% BEGIN_ANDROID_PROVISIONING
+\resumeItem{Developed Android-based provisioning applications to configure gateways and sensors during field installation.}
+\resumeItem{Enabled secure onboarding, network configuration, and commissioning workflows, reducing installation time by up to 40\%.}
+% END_ANDROID_PROVISIONING
+\resumeItemListEnd
+
+% ---- Comscore ----
+\resumeSubheading
+{Comscore Inc}{Aug 2018 -- Aug 2019}
+{Automation Engineer}{Reston, VA}
+\resumeItemListStart
+% BEGIN_COMSCORE
+\resumeItem{Built Python-based automation and data verification pipelines, improving testing and validation efficiency by 70\%.}
+\resumeItem{Integrated CI/CD workflows with Jira, Git, and Jenkins to streamline data engineering operations.}
+% END_COMSCORE
+\resumeItemListEnd
+
+% ---- Accenture ----
+\resumeSubheading
+{Accenture}{May 2013 -- Jul 2015}
+{Software Engineer}{Bengaluru, India}
+\resumeItemListStart
+% BEGIN_ACCENTURE
+\resumeItem{Developed enterprise SAP ABAP solutions using BAPIs and RFCs across IS Banking, SD, and FICO modules.}
+% END_ACCENTURE
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
 
 %-----------EDUCATION-----------
 \section{Education}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {University of Maryland Baltimore County}{Aug 2016 -- May 2018}
-      {Master of Science in Computer Science}{Baltimore, MD}
-    \resumeSubheading
-      {Institute of Engineering and Technology}{Sep 2009 -- May 2013}
-      {Bachelor of Engineering in Computer Engineering}{Indore, India}
-  \resumeSubHeadingListEnd
+\resumeSubHeadingListStart
+\resumeSubheading
+{University of Maryland Baltimore County}{2016 -- 2018}
+{M.S. in Computer Science}{Baltimore, MD}
+\resumeSubheading
+{Institute of Engineering and Technology}{2009 -- 2013}
+{B.E. in Computer Engineering}{Indore, India}
+\resumeSubHeadingListEnd
 
-%-----------PROGRAMMING SKILLS-----------
+%-----------SKILLS-----------
 \section{Technical Skills}
- \begin{itemize}[leftmargin=0.15in, label={}]
-    \small{\item{
-     \textbf{Languages}{: Java, Python, Go, C, JavaScript, Bash} \\
-     \textbf{Cloud \& Infrastructure}{: AWS (IoT Core, ECS, EC2, S3, CDK, CloudWatch), Azure IoT, Docker, Kubernetes, Jenkins} \\
-     \textbf{Databases}{: PostgreSQL, MySQL, DynamoDB} \\
-     \textbf{IoT Protocols}{: MQTT, Modbus, BLE, DNP3} \\
-     \textbf{Tools \& Frameworks}{: Spring, Flask, Maven, Gradle, JUnit, Selenium, Git, Android Studio} \\
-    }}
- \end{itemize}
- \vspace{-16pt}
+\small{
+\textbf{Languages}: Java, Go, Python, C, JavaScript, Bash \\
+\textbf{Cloud \& Infrastructure}: AWS (ECS, EC2, S3, IoT Core, SQS, CloudWatch), Docker, Kubernetes, Jenkins \\
+\textbf{Databases}: PostgreSQL, MySQL, DynamoDB, Redis \\
+\textbf{Protocols}: MQTT, Modbus, BLE, DNP3 \\
+\textbf{Tools \& Frameworks}: Spring, Flask, Git, JUnit, Selenium, Android Studio
+}
 
 \end{document}

@@ -3,3 +3,5 @@ typer
 jinja2
 requests
 rich
+# System (LaTeX) dependencies for PDF builds:
+# - TeX Live full or packages providing: fullpage, titlesec, enumitem, hyperref, fancyhdr, fontawesome5

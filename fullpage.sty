@@ -1,0 +1,18 @@
+% Local fallback for fullpage.sty when TeX Live doesn't ship it.
+% Matches common fullpage defaults so existing layouts stay stable.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fullpage}[2025/01/01 Local fullpage fallback]
+
+\DeclareOption{empty}{} % ignore known option used by the template
+\ProcessOptions\relax
+
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{0in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\footskip}{0.5in}
+\setlength{\marginparwidth}{0in}
+\setlength{\marginparsep}{0in}

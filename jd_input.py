@@ -1,6 +1,7 @@
 import sys
 import requests
 import re
+import json
 from typing import Optional
 from urllib.parse import urlparse
 
@@ -10,6 +11,38 @@ def clean_html(html: str) -> str:
     html = re.sub(r"<[^>]+>", " ", html)
     html = re.sub(r"\s+", " ", html)
     return html.strip()
+
+def extract_json_ld_description(html: str) -> str:
+    matches = re.findall(
+        r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>',
+        html,
+        flags=re.S | re.I,
+    )
+    for raw in matches:
+        raw = raw.strip()
+        if not raw:
+            continue
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(data, list):
+            items = data
+        else:
+            items = [data]
+        for item in items:
+            if isinstance(item, dict) and "description" in item:
+                return clean_html(str(item["description"]))
+    return ""
+
+def extract_job_description(html: str) -> str:
+    json_ld = extract_json_ld_description(html)
+    if json_ld:
+        return json_ld
+    m = re.search(r'"jobDescription"\s*:\s*"(.*?)"', html, flags=re.S)
+    if m:
+        return clean_html(m.group(1).encode("utf-8").decode("unicode_escape"))
+    return ""
 
 def workday_cxs_url(url: str) -> Optional[str]:
     parsed = urlparse(url)
@@ -51,8 +84,17 @@ def get_jd_text():
     choice = input("> ").strip()
 
     if choice == "1":
-        print("Paste JD (Ctrl+D to finish):")
-        return sys.stdin.read()
+        print("Paste JD (type END on a new line to finish):")
+        lines = []
+        while True:
+            try:
+                line = input()
+            except EOFError:
+                break
+            if line.strip().upper() == "END":
+                break
+            lines.append(line)
+        return "\n".join(lines).strip()
 
     if choice == "2":
         url = input("Enter JD URL: ").strip()
@@ -63,11 +105,21 @@ def get_jd_text():
                     return jd_text
 
             r = requests.get(url, timeout=10)
-            cleaned = clean_html(r.text)
+            extracted = extract_job_description(r.text)
+            cleaned = extracted or clean_html(r.text)
             if cleaned:
                 return cleaned
         except Exception:
             pass
 
         print("Failed to fetch URL. Paste JD instead.")
-        return sys.stdin.read()
+        lines = []
+        while True:
+            try:
+                line = input()
+            except EOFError:
+                break
+            if line.strip().upper() == "END":
+                break
+            lines.append(line)
+        return "\n".join(lines).strip()

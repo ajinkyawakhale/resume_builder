@@ -15,7 +15,7 @@ ALWAYS_KEEP = {"DEVOPS"}
 
 OUTPUT_DIR = "output"
 TEX_FILE = "optimized.tex"
-PDF_FILE = "optimized.pdf"
+PDF_FILE = "Ajinkya_Wakhale_Resume.pdf"
 MAX_BULLETS = {
     "SYSTEMS_HIGHLIGHTS": 4,
     "DEVOPS": 4,
@@ -39,24 +39,35 @@ def run():
     jd = get_jd_text()
     jd_analysis = analyze_jd(jd)
 
-    detected = jd_analysis.get("role_type", "")
+    detected = jd_analysis.get("role_type", "").strip()
+    if not detected:
+        detected = "backend"
+
+    role_options = ["backend", "platform", "infra", "iot"]
     print(f"\nDetected role: {detected}")
-    print("Override role? (backend / platform / infra / iot or Enter)")
-    override = input("> ").strip().lower()
-    if override:
-        jd_analysis["role_type"] = override
+    print("Select role family (Enter keeps detected):")
+    for idx, role in enumerate(role_options, start=1):
+        print(f"{idx}) {role}")
+    choice = input("> ").strip().lower()
+    if choice.isdigit():
+        idx = int(choice) - 1
+        if 0 <= idx < len(role_options):
+            jd_analysis["role_type"] = role_options[idx]
+    elif choice:
+        jd_analysis["role_type"] = choice
+    else:
+        jd_analysis["role_type"] = detected
 
     print(f"Using role: {jd_analysis['role_type']}\n")
 
     # --- Canonical bullets (input only) ---
-    sections = {
+    base_sections = {
         "DEVOPS": [
             "Owned architecture and development of backend services and Android-based industrial gateways for provisioning, telemetry ingestion, diagnostics, and control of IoT assets.",
             "Founded and led DevOps and testing infrastructure, designing Jenkins-based CI/CD pipelines, artifact repositories, and automated testing in an on-prem, air-gapped environment.",
             "Built custom server-side Git hooks in Python for self-hosted Git, enabling end-to-end automation from commit to build, test, and release.",
             "Standardized build and testing workflows across 10--20 engineers, eliminating manual steps and significantly reducing build times for large Android/AOSP applications."
         ],
-
         "DEVICE_MGMT_BACKEND": [
             "Architected containerized backend services deployed on AWS ECS, handling thousands of API calls and telemetry messages per minute.",
             "Designed event-driven ingestion pipelines where gateways publish telemetry to AWS IoT (MQTT), fan out via SQS, and are processed by backend services.",
@@ -65,15 +76,15 @@ def run():
             "Implemented observability using structured logging, metrics, health checks, and alarms across multiple containerized services.",
             "Reduced cloud infrastructure costs by up to 40\\% through scaling strategies and resource optimization."
         ],
-
         "METER_DIAGNOSTICS": [],
         "PROTOCOL_PLATFORM": [],
         "EDGE_RELIABILITY": [],
         "ANDROID_PROVISIONING": [],
-
         "COMSCORE": [],
         "ACCENTURE": []
     }
+
+    sections = dict(base_sections)
 
     all_selected = []
 
@@ -125,14 +136,20 @@ def run():
 
     print("✔ optimized.tex generated (clean overwrite)")
 
+    local_fullpage = os.path.join(os.path.dirname(__file__), "fullpage.sty")
+    output_fullpage = os.path.join(OUTPUT_DIR, "fullpage.sty")
+    if os.path.exists(local_fullpage):
+        shutil.copy(local_fullpage, output_fullpage)
+
     pdf_path = os.path.join(OUTPUT_DIR, PDF_FILE)
+    jobname = os.path.splitext(PDF_FILE)[0]
     latexmk = shutil.which("latexmk")
     pdflatex = shutil.which("pdflatex")
 
     if latexmk:
         try:
             subprocess.run(
-                [latexmk, "-pdf", "-interaction=nonstopmode", "-halt-on-error", TEX_FILE],
+                [latexmk, "-pdf", "-interaction=nonstopmode", "-halt-on-error", "-jobname=" + jobname, TEX_FILE],
                 cwd=OUTPUT_DIR,
                 check=True,
                 stdout=subprocess.DEVNULL,
@@ -144,7 +161,7 @@ def run():
     elif pdflatex:
         try:
             subprocess.run(
-                [pdflatex, "-interaction=nonstopmode", "-halt-on-error", TEX_FILE],
+                [pdflatex, "-interaction=nonstopmode", "-halt-on-error", "-jobname", jobname, TEX_FILE],
                 cwd=OUTPUT_DIR,
                 check=True,
                 stdout=subprocess.DEVNULL,
@@ -157,7 +174,7 @@ def run():
         print("ℹ️  No LaTeX engine found (latexmk or pdflatex). Use Overleaf or install TeX.")
 
     # --- ATS Score ---
-    score = ats_score(jd, tex)
+    score = ats_score(jd, tex, jd_analysis)
     print(f"ATS Match Score: {score}%")
 
 if __name__ == "__main__":
